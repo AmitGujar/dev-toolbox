@@ -41,6 +41,7 @@ starship_cli() {
     touch ~/.config/starship.toml
     cat ../config/starship.toml >> ~/.config/starship.toml
     echo "Restart the terminal....."
+    cat .bashrc >> ~/.bashrc
 }
 
 k8s_setup() {
