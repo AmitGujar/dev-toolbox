@@ -128,19 +128,16 @@ case $_distro in
         ;;
 esac
 
-
-
 # Initializing starship prompt
 
 export STARSHIP_DISTRO="$ICON"
 
 eval "$(starship init bash)"
 # Azure SP details
-export AZURE_SUBSCRIPTION_ID=<AZURE_SUBSCRIPTION_ID>
-export AZURE_CLIENT_ID=<AZURE_CLIENT_ID>
-export AZURE_SECRET=<AZURE_SECRET>
-export AZURE_TENANT=<AZURE_TENANT>
+# export AZURE_SUBSCRIPTION_ID=<AZURE_SUBSCRIPTION_ID>
+# export AZURE_CLIENT_ID=<AZURE_CLIENT_ID>
+# export AZURE_SECRET=<AZURE_SECRET>
+# export AZURE_TENANT=<AZURE_TENANT>
 # Setting up default text editor for ansible vault
 export EDITOR=nano
-
-export ANSIBLE_VAULT_PASSWORD_FILE=~/myPlaybooks/vault/password.py
+# export ANSIBLE_VAULT_PASSWORD_FILE=~/myPlaybooks/vault/password.py
