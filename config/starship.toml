@@ -2,6 +2,7 @@
 
 # Inserts a blank line between shell prompts
 add_newline = true
+command_timeout = 10000
 
 # changing default shell prompt
 format = """(238)$env_var  \
@@ -14,7 +15,7 @@ error_symbol = "[](white)"
 
 # Shows an icon that should be included by zshrc script based on the distribution or os
 [env_var.STARSHIP_DISTRO]
-format = '[$env_value](bold white)'
+format = '[$env_value](bold white)'  # removed space between distro and rest for pwsh
 variable = "STARSHIP_DISTRO"
 disabled = false
 
@@ -40,7 +41,6 @@ format = "on [$symbol$branch]($style) "
 truncation_length = 10
 truncation_symbol = "…/"
 style = "bold purple"
-
 
 [git_status]
 format = '[\($all_status$ahead_behind\)]($style) '
