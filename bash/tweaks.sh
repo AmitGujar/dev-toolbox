@@ -1,3 +1,12 @@
+check_curl() {
+    if command -v curl &> /dev/null; then
+        echo "curl is already installed..."
+    else
+        echo "Installing curl....."
+        apt install curl -y
+    fi
+}
+
 starship_cli() {
     echo "Installing starship....."
     curl -sS https://starship.rs/install.sh | sh
@@ -17,7 +26,7 @@ starship_cli() {
     cat bashrc.config >> ~/.bashrc
     wait
     exec bash
-    wait
-    echo "Restart the terminal....."
 }
+
+check_curl
 starship_cli
