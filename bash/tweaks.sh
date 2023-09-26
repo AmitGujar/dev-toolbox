@@ -14,7 +14,10 @@ starship_cli() {
     touch ~/.config/starship.toml
     wait
     cat ../config/starship.toml >> ~/.config/starship.toml
-    cat .bashrc >> ~/.bashrc
+    cat bashrc.config >> ~/.bashrc
+    wait
+    exec bash
+    wait
     echo "Restart the terminal....."
 }
 starship_cli

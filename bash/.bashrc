@@ -140,4 +140,4 @@ eval "$(starship init bash)"
 # export AZURE_TENANT=<AZURE_TENANT>
 # Setting up default text editor for ansible vault
 export EDITOR=nano
-# export ANSIBLE_VAULT_PASSWORD_FILE=~/myPlaybooks/vault/password.py
+export ANSIBLE_VAULT_PASSWORD_FILE=~/myPlaybooks/vault/password.py
