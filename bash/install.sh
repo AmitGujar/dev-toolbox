@@ -21,6 +21,15 @@ ansible_setup() {
     apt-add-repository ppa:ansible/ansible
     apt update -y
     apt install ansible -y
+    echo "Checking for git"
+    if command -v git &> /dev/null; then
+        echo "git validation passed.."
+    else
+        apt install git -y
+        sleep 3
+    fi
+    echo "Cloning myPlaybooks repository....."
+    git clone https://github.com/AmitGujar/myPlaybooks.git
 }
 
 azure_cli() {
