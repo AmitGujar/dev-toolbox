@@ -42,7 +42,7 @@ ansible_setup() {
     apt install python3.10 -y
     apt install python3-pip -y
     wait
-    apt-add-repository ppa:ansible/ansible
+    echo -e "\n" | apt-add-repository ppa:ansible/ansible
     apt update -y
     apt install ansible -y
     echo "Checking for git"
