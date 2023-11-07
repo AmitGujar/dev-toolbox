@@ -4,6 +4,30 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
+git_auth(){
+    git config --global user.name "AmitGujar"
+    git config --global user.email "amithero3342@gmail.com"
+    echo "setting up the wsl auth"
+    local auth
+    auth=$(git config --global credential.helper "/mnt/c/Users/AmitDilipGujar/AppData/Local/Programs/Git/mingw64/libexec/git-core/git-credential-wincred.exe")
+    if [ -z "$auth" ]; then
+        echo "Auth failed"
+    else
+        echo "Auth Success"
+    fi
+}
+
+check_userinputforauth() {
+    read -p "Do you want to configure the git with wsl = " configure
+
+    if [ -z "$configure" ]; then 
+        echo "All right, Nothing to do here....."
+    else 
+        git_auth
+    fi
+}
+
+
 echo "Installing required tools....."
 
 getting_update() {
@@ -28,8 +52,8 @@ ansible_setup() {
         apt install git -y
         sleep 3
     fi
-    echo "Cloning myPlaybooks repository....."
-    git clone https://github.com/AmitGujar/myPlaybooks.git
+    echo "Installing ansible linter...."
+    pip3 install ansible-lint
 }
 
 azure_cli() {
@@ -57,7 +81,7 @@ terraform_install() {
     sudo apt update && sudo apt install terraform
 }
 
-
+check_userinputforauth
 getting_update
 ansible_setup
 azure_cli
