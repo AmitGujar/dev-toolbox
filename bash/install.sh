@@ -10,7 +10,8 @@ git_auth(){
     echo "setting up the wsl auth"
     local auth
     auth=$(git config --global credential.helper "/mnt/c/Users/AmitDilipGujar/AppData/Local/Programs/Git/mingw64/libexec/git-core/git-credential-wincred.exe")
-    if [ -z "$auth" ]; then
+    echo "$auth"
+    if [ $? -ne 0 ]; then
         echo "Auth failed"
     else
         echo "Auth Success"
