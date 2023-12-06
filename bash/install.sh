@@ -1,10 +1,10 @@
 #!/bin/bash
-if [ "$EUID" -ne 0 ]
-  then echo "Whoa, Run this script as root.."
-  exit
+if [ "$EUID" -ne 0 ]; then
+    echo "Whoa, Run this script as root.."
+    exit
 fi
 
-git_auth(){
+git_auth() {
     git config --global user.name "AmitGujar"
     git config --global user.email "amithero3342@gmail.com"
     echo "setting up the wsl auth"
@@ -21,13 +21,12 @@ git_auth(){
 check_userinputforauth() {
     read -p "Do you want to configure the git with wsl = " configure
 
-    if [ -z "$configure" ]; then 
+    if [ -z "$configure" ]; then
         echo "All right, Nothing to do here....."
-    else 
+    else
         git_auth
     fi
 }
-
 
 echo "Installing required tools....."
 
@@ -47,7 +46,7 @@ ansible_setup() {
     apt update -y
     apt install ansible -y
     echo "Checking for git"
-    if command -v git &> /dev/null; then
+    if command -v git &>/dev/null; then
         echo "git validation passed.."
     else
         apt install git -y
@@ -58,7 +57,7 @@ ansible_setup() {
 }
 
 azure_cli() {
-    if command -v curl &> /dev/null; then
+    if command -v curl &>/dev/null; then
         echo "curl validation passed.."
     else
         apt install curl -y
@@ -75,11 +74,29 @@ k8s_setup() {
     curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 }
 
-
 terraform_install() {
     wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
     echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
     sudo apt update && sudo apt install terraform
+}
+
+github_cli() {
+    local token
+    read -p "Provide the PAT token for github = " token
+
+    if [ -z $token ]; then 
+        echo "No token is provided...."
+        exit 1
+    fi
+
+    echo "Installing github cli......"
+    curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg &&
+        sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg &&
+        echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list >/dev/null &&
+        sudo apt update &&
+        sudo apt install gh -y
+    echo $token | gh auth login --with-token
+
 }
 
 check_userinputforauth
@@ -88,3 +105,4 @@ ansible_setup
 azure_cli
 k8s_setup
 terraform_install
+github_cli
