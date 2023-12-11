@@ -9,7 +9,7 @@ git_auth() {
     git config --global user.email "amithero3342@gmail.com"
     echo "setting up the wsl auth"
     local auth
-    auth=$(git config --global credential.helper "/mnt/c/Users/AmitDilipGujar/AppData/Local/Programs/Git/mingw64/libexec/git-core/git-credential-wincred.exe")
+    auth=$(git config --global credential.helper "/mnt/c/Users/AmitDilipGujar/AppData/Local/Programs/Git/mingw64/bin/git-credential-manager.exe")
     echo "$auth"
     if [ $? -ne 0 ]; then
         echo "Auth failed"
