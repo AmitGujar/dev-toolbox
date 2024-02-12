@@ -9,7 +9,7 @@ Linux Distro<br>
 
 Run install script as root.
 
-```curl -o- https://raw.githubusercontent.com/AmitGujar/dev-toolbox/main/bash/install.sh | sudo bash```
+```curl https://raw.githubusercontent.com/AmitGujar/dev-toolbox/main/bash/install.sh | sudo bash```
 
 Run tweaks script as non-root
 
