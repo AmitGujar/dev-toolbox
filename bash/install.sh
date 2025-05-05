@@ -65,7 +65,7 @@ azure_cli() {
     fi
     echo "Installing Az CLI....."
     curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-    pip3 install -r /usr/lib/python3/dist-packages/ansible_collections/azure/azcollection/requirements-azure.txt
+    pip3 install -r /usr/lib/python3/dist-packages/ansible_collections/azure/azcollection/requirements.txt
 }
 
 k8s_setup() {
@@ -84,7 +84,7 @@ github_cli() {
     local token
     read -p "Provide the PAT token for github = " token
 
-    if [ -z $token ]; then 
+    if [ -z $token ]; then
         echo "No token is provided...."
         exit 1
     fi
@@ -99,6 +99,14 @@ github_cli() {
 
 }
 
+aws_cli() {
+    sudo apt install unzip -y
+    cd /tmp
+    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+    unzip awscliv2.zip
+    sudo ./aws/install
+}
+
 check_userinputforauth
 getting_update
 ansible_setup
@@ -106,3 +114,4 @@ azure_cli
 k8s_setup
 terraform_install
 github_cli
+aws_cli
