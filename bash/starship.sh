@@ -28,12 +28,13 @@ starship_cli() {
     if [ $? -ne 0 ]; then
         cd /tmp
         git clone https://github.com/AmitGujar/dev-toolbox
-        cd /tmp/dev-toolbox/bash
+        cd dev-toolbox/bash
         cat ../config/starship.toml >> ~/.config/starship.toml
     fi
     cat bashrc.config >> ~/.bashrc
-    wait
+    sleep 3
     exec bash
+    sleep 2
 }
 
 check_curl
