@@ -1,3 +1,5 @@
+#!/bin/bash
+
 check_curl() {
     if command -v curl &> /dev/null; then
         echo "curl is already installed..."
@@ -23,6 +25,12 @@ starship_cli() {
     touch ~/.config/starship.toml
     wait
     cat ../config/starship.toml >> ~/.config/starship.toml
+    if [ $? -ne 0 ]; then
+        cd /tmp
+        git clone https://github.com/AmitGujar/dev-toolbox
+        cd /tmp/dev-toolbox/bash
+        cat ../config/starship.toml >> ~/.config/starship.toml
+    fi
     cat bashrc.config >> ~/.bashrc
     wait
     exec bash
