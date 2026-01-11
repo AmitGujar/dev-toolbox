@@ -11,15 +11,17 @@ check_curl() {
 
 starship_cli() {
     echo "Installing starship....."
-    curl -sS https://starship.rs/install.sh | sh
-    wait
+    # Try non-interactive install first; fall back to default if unsupported
+    if ! curl -fsSL https://starship.rs/install.sh | sh -s -- -y; then
+        curl -fsSL https://starship.rs/install.sh | sh
+    fi
     echo "eval \"\$(starship init bash)\"" >> ~/.bashrc
     wait
     if [ -d ~/.config ]; then
         echo "Directory exists"
     else
         echo "Creating directory....."
-        mkdir ~/.config
+        mkdir -p ~/.config
     fi
     wait
     touch ~/.config/starship.toml
@@ -28,12 +30,15 @@ starship_cli() {
     if [ $? -ne 0 ]; then
         cd /tmp
         git clone https://github.com/AmitGujar/dev-toolbox
-        cd dev-toolbox/bash
+        cd /tmp/dev-toolbox/bash
         cat ../config/starship.toml >> ~/.config/starship.toml
     fi
     cat bashrc.config >> ~/.bashrc
-    wait
-    exec bash
+    if [ -t 0 ]; then
+        exec bash
+    else
+        echo "Open a new shell to load changes."
+    fi
 }
 
 check_curl
