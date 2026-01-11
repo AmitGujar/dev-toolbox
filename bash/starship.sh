@@ -32,9 +32,8 @@ starship_cli() {
         cat ../config/starship.toml >> ~/.config/starship.toml
     fi
     cat bashrc.config >> ~/.bashrc
-    sleep 3
+    wait
     exec bash
-    sleep 2
 }
 
 check_curl
