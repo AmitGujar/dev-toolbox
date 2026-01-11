@@ -13,7 +13,7 @@ Run install script as root.
 
 Run starship script as to install starship
 
-``````curl https://raw.githubusercontent.com/AmitGujar/dev-toolbox/main/bash/starship.sh | sudo bash```
+```curl https://raw.githubusercontent.com/AmitGujar/dev-toolbox/main/bash/starship.sh | sudo bash```
 
 
 ### For Windows Terminal.
