@@ -30,6 +30,7 @@ starship_cli() {
         git clone https://github.com/AmitGujar/dev-toolbox
         cd dev-toolbox/bash
         cat ../config/starship.toml >> ~/.config/starship.toml
+        rm -rf /tmp/dev-toolbox
     fi
     cat bashrc.config >> ~/.bashrc
     wait
