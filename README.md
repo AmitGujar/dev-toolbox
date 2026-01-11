@@ -11,9 +11,9 @@ Run install script as root.
 
 ```curl https://raw.githubusercontent.com/AmitGujar/dev-toolbox/main/bash/install.sh | sudo bash```
 
-Run tweaks script as non-root
+Run starship script as to install starship
 
-```./tweaks.sh```
+``````curl https://raw.githubusercontent.com/AmitGujar/dev-toolbox/main/bash/starship.sh | sudo bash```
 
 
 ### For Windows Terminal.
